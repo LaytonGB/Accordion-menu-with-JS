@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accordian with JS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="menu">
+    <li class="menu-item" id="videos">
+      <a href="#" class="btn">Videos</a>
+      <div class="menu-item__sub menu-item__hide">
+        <a href="#" class="btn">My Videos</a>
+        <a href="#" class="btn">Upload</a>
+      </div>
+    </li>
+    <li class="menu-item" id="profile">
+      <a href="#" class="btn">Profile</a>
+      <div class="menu-item__sub menu-item__hide">
+        <a href="#" class="btn">My Profile</a>
+        <a href="#" class="btn">Settings</a>
+      </div>
+    </li>
+    <li class="menu-item" id="accounts">
+      <a href="#" class="btn">Accounts</a>
+      <div class="menu-item__sub menu-item__hide">
+        <a href="#" class="btn">Add Account</a>
+        <a href="#" class="btn">Sign out</a>
+      </div>
+    </li>
+  </div>
+
+
+  <script type="text/javascript">
+    let selectedMenu = null;
+    const updateMenu = () => {
+      const menus = document.querySelectorAll("div.menu-item__sub");
+      for (const menu of menus)
+        menu.classList.replace("menu-item__show", "menu-item__hide");
+      if (selectedMenu === null) return;
+      const e = document.querySelector(`#${selectedMenu} > div.menu-item__sub`);
+      e.classList.replace("menu-item__hide", "menu-item__show");
+    };
+    const setMenu = (menu) => {
+      if (selectedMenu === menu && menu !== null)
+        selectedMenu = null;
+      else
+        selectedMenu = menu;
+      // console.log(menu);
+      updateMenu();
+    };
+
+    window.addEventListener("load", () => {
+      const menuToggles = document.querySelectorAll("li.menu-item > a.btn");
+      for (const menu of menuToggles)
+        menu.addEventListener("click", (e) => setMenu(menu.parentElement.id));
+      document.addEventListener("click", (e) => {
+        if (e.target.closest("li.menu-item > a.btn") === null)
+          setMenu(null);
+      });
+    });
+  </script>
+</body>
+
+</html>

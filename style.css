@@ -1,0 +1,80 @@
+:root {
+  --background: #000000;
+  --blue: #2756ad;
+  --dark-grey: #303030;
+  --light-grey: #b8b8b8
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.menu {
+  background: var(--blue);
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  width: 13rem;
+}
+
+li.menu-item {
+  list-style: none;
+  overflow: hidden;
+  position: relative;
+}
+
+.btn {
+  display: block;
+  text-decoration: none;
+  color: var(--dark-grey);
+  padding: 0.5rem 2rem;
+  font-size: 1.5rem;
+}
+li.menu-item > a.btn::before {
+  content: '';
+  height: 1rem;
+  width: 1rem;
+  color: white;
+  display: block;
+  position: absolute;
+  transform: translateX(0.5rem) rotate(45deg);
+  top: 2.2rem;
+  background: var(--blue);
+}
+
+.menu-item__hide {
+  max-height: 0;
+  padding: 0;
+}
+.menu-item__show {
+  max-height: 12rem;
+  padding: 1rem 0;
+}
+.menu-item__sub {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  background: var(--dark-grey);
+  transition: max-height 0.2s, padding 0.2s;
+}
+.menu-item__sub > a.btn {
+  padding: 0.2rem 2.5rem;
+  color: var(--light-grey);
+  font-size: 1.2rem;
+  transition: transform 0.1s;
+}
+.menu-item__sub > a.btn:hover {
+  transform: scale(1.1);
+}
